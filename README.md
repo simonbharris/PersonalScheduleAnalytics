@@ -1,5 +1,7 @@
 # PersonalScheduleAnalytics
 
+_This will probably need to be updated to include working with a dotnet project, for instance, may need to do a dotnet restore along with npm install_
+
 ### Getting Started
 
 1. Fork the project.
