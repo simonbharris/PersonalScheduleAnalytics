@@ -28,9 +28,9 @@
                 </div>
             </div>
             <asp:ContentPlaceHolder ID="LoginPageBody" runat="server">
-
             </asp:ContentPlaceHolder>
-
+            <asp:ContentPlaceHolder ID="CreateUserAcct" runat="server">
+            </asp:ContentPlaceHolder>
         </div>
     </form>
 </body>
