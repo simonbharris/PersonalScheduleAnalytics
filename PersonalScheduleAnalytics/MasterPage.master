@@ -20,7 +20,8 @@
         <div>
             <div class="container Login-Title pt-5 pb-5">
                 <div class="row">
-                    <h1 class="mx-auto">Personal Schedule Analytics</h1>
+                    <asp:HyperLink class="mx-auto" ID="hprFrmMaster" runat="server" NavigateUrl="~/frmDashboard.aspx"><h1 class="mx-auto">Personal Schedule Analytics</h1>
+                    </asp:HyperLink>
                 </div>
                 <div class="row">
                     <asp:ContentPlaceHolder ID="PageHeader" runat="server">
@@ -30,6 +31,14 @@
             <asp:ContentPlaceHolder ID="LoginPageBody" runat="server">
             </asp:ContentPlaceHolder>
             <asp:ContentPlaceHolder ID="CreateUserAcct" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="DashboardPageBody" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="UpdateUsersPageBody" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="UpdateCategoriesPageBody" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="UpdateTimeSheetsPageBody" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </form>

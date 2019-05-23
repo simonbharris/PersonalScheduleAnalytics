@@ -8,15 +8,14 @@ using MySql.Data.MySqlClient;
 
 public partial class frmLoginPage : System.Web.UI.Page
 {
-
-    string connectionString = @"Server=localhost;Database=CIS470_seniorproject;Uid=root;Pwd=Qazwsx1$";
+    string connectionString = @"Server=localhost;Database=CIS470_seniorproject;Uid=SeniorProject;Pwd=password";
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
 
-    protected void btnUserLogin_Click(object sender, EventArgs e)
+    protected void LnkBtnUserLogin_Click(object sender, EventArgs e)
     {
         string username = txtUserID.Text;
         string password = txtUserPassword.Text;
@@ -35,12 +34,15 @@ public partial class frmLoginPage : System.Web.UI.Page
                 Console.Write(ex);
             }
         }
+        string script = "alert(\"Hello!\");";
+        ScriptManager.RegisterStartupScript(this, GetType(),
+                              "ServerControlScript", script, true);
 
-        
     }
 
-    protected void btnUserCreate_Click(object sender, EventArgs e)
+    protected void LnkBtnUserCreate_Click(object sender, EventArgs e)
     {
-
+  
     }
+
 }

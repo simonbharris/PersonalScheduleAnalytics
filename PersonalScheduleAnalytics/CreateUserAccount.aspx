@@ -33,8 +33,33 @@
                 </div>
 
             </div>
+            <div class="row">
+                <label id="lblNewUserEmail" class="col-sm-4">
+                    Email: 
+                </label>
+                <div class="col-sm-8">
+                    <asp:TextBox class="form-control my-1" ID="txtNewUserEmail" runat="server"></asp:TextBox>
+                </div>
+            </div>
 
-            <asp:Button ID="btnUserAccountCreate" OnClick="btnUserAccountCreate_Click" Text="Create Account" type="submit" class="btn btn-info btn-block" runat="server" />
+            <div class="row">
+                <label id="lblNewUserFirstName" class="col-sm-4">
+                    First Name: 
+                </label>
+                <div class="col-sm-8">
+                    <asp:TextBox class="form-control my-1" ID="txtNewUserFirstName" runat="server"></asp:TextBox>
+                </div>
+            </div>
+            <div class="row">
+                <label id="lblNewUserLastName" class="col-sm-4">
+                    Last Name: 
+                </label>
+                <div class="col-sm-8">
+                    <asp:TextBox class="form-control my-1" ID="txtNewUserLastName" runat="server"></asp:TextBox>
+                </div>
+            </div>
+
+            <asp:Button ID="btnUserAccountCreate" OnClick="BtnUserAccountCreate_Click" Text="Create Account" type="submit" class="btn btn-info btn-block" runat="server" />
         </div>
     </div>
 </asp:Content>
