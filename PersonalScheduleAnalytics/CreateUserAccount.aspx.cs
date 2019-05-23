@@ -9,18 +9,22 @@ using MySql.Data.MySqlClient;
 public partial class CreateUserAccount : System.Web.UI.Page
 {
 
-    string connectionString = @"Server=localhost;Database=CIS470_seniorproject;Uid=root;Pwd=Qazwsx1$";
+    string connectionString = @"Server=localhost;Database=CIS470_seniorproject;Uid=SeniorProject;Pwd=password";
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
 
-    protected void btnUserAccountCreate_Click(object sender, EventArgs e)
+    protected void BtnUserAccountCreate_Click(object sender, EventArgs e)
     {
 
         string username = txtNewUserID.Text;
         string password = txtNewUserPassword.Text;
+        string email = txtNewUserEmail.Text;
+        string firstName = txtNewUserFirstName.Text; 
+        string lastName = txtNewUserLastName.Text;
+        DateTime startDt = DateTime.Now;
 
         if (username != "" && password != "")
         {
@@ -31,7 +35,7 @@ public partial class CreateUserAccount : System.Web.UI.Page
                 MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connectionString);
                 conn.Open();
 
-                string sqlStmt = "INSERT INTO testtable.users (UserID, UserPW) " + "Values('" + username + "',' " + password + "' )";
+                string sqlStmt = "INSERT INTO CIS470_seniorproject.users (UserID, UserPW, UserEmail, UserFirstName, UserLastName, UserStartDt) " + "Values('" + username + "',' " + password + "',' " + email + "',' " + firstName + "','" + lastName + "','" + startDt + "' )";
 
                 cmd = new MySqlCommand(sqlStmt, conn);
                 cmd.ExecuteReader();

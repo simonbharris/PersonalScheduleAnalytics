@@ -35,7 +35,8 @@
 
                         </div>
 
-                        <asp:Button ID="btnUserLogin" OnClick="btnUserLogin_Click" Text="User Login" type="submit" class="btn btn-info btn-block" runat="server" />
+                        <asp:LinkButton ID="lnkBtnUserLogin" OnClick="LnkBtnUserLogin_Click" Text="User Login" type="submit" class="btn btn-info btn-block" runat="server" PostBackUrl="~/frmDashboard.aspx"> </asp:LinkButton>
+
                     </div>
                 </div>
             </div>
@@ -43,11 +44,12 @@
                 <p>New? Sign up here</p>
                 <div>
                     <div class=" w-50 form-group ">
-                        <asp:Button ID="btnUserCreate" class="btn btn-success btn-block" runat="server" OnClick="btnUserCreate_Click" Text="Register" PostBackUrl="~/CreateUserAccount.aspx" />
+                        <asp:LinkButton ID="lnkBtnUserCreate" class="btn btn-success btn-block" runat="server" OnClick="LnkBtnUserCreate_Click" Text="Register" PostBackUrl="~/CreateUserAccount.aspx"> </asp:LinkButton>
                     </div>
                 </div>
             </div>
-        </div>
+
+          </div>
     </div>
 </asp:Content>
 
