@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 
@@ -96,17 +90,6 @@ public partial class CreateUserAccount : System.Web.UI.Page
             lblError.Text = "Password and Password Verification must be the same.";
             lblError.BackColor = System.Drawing.Color.Red;
         }
-        else if (email == "")
-        {//standard validation of empty field
-            txtNewUserID.BackColor = System.Drawing.Color.White;
-            txtNewUserPassword.BackColor = System.Drawing.Color.White;
-            txtVerifyNewUserPassword.BackColor = System.Drawing.Color.White;
-            txtNewUserEmail.BackColor = System.Drawing.Color.Yellow;
-            txtNewUserFirstName.BackColor = System.Drawing.Color.White;
-            txtNewUserLastName.BackColor = System.Drawing.Color.White;
-            lblError.Text = "Please enter an Email address.";
-            lblError.BackColor = System.Drawing.Color.Red;
-        }
         else if (firstName == "")
         {//standard validation of empty field
             txtNewUserID.BackColor = System.Drawing.Color.White;
@@ -127,6 +110,17 @@ public partial class CreateUserAccount : System.Web.UI.Page
             txtNewUserFirstName.BackColor = System.Drawing.Color.White;
             txtNewUserLastName.BackColor = System.Drawing.Color.Yellow;
             lblError.Text = "Please enter your Last Name.";
+            lblError.BackColor = System.Drawing.Color.Red;
+        }
+        else if (email == "")
+        {//standard validation of empty field
+            txtNewUserID.BackColor = System.Drawing.Color.White;
+            txtNewUserPassword.BackColor = System.Drawing.Color.White;
+            txtVerifyNewUserPassword.BackColor = System.Drawing.Color.White;
+            txtNewUserEmail.BackColor = System.Drawing.Color.Yellow;
+            txtNewUserFirstName.BackColor = System.Drawing.Color.White;
+            txtNewUserLastName.BackColor = System.Drawing.Color.White;
+            lblError.Text = "Please enter an Email address.";
             lblError.BackColor = System.Drawing.Color.Red;
         }
         else if (userID != "" && password != "" && verifyPassword != "" && email != "" && firstName != "" && lastName != "")
@@ -152,14 +146,14 @@ public partial class CreateUserAccount : System.Web.UI.Page
                 cmd = new MySqlCommand(sqlStmt, conn);
                 cmd.ExecuteReader();
                 conn.Close();
-
-
-
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
                 Console.Write(ex);
             }
+
+            Response.Redirect("~/frmDashboard.aspx?userID=" + userID);
+
         }
     }
 

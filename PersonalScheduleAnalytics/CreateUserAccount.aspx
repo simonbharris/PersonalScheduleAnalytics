@@ -22,6 +22,7 @@
                     <asp:TextBox class="form-control my-1" type="text" ID="txtNewUserID" runat="server"></asp:TextBox>
                 </div>
             </div>
+
             <div class="row">
                 <label id="lblNewPassword" class="col-sm-4">
                     Password: 
@@ -39,15 +40,7 @@
                 </div>
 
             </div>
-            <div class="row">
-                <label id="lblNewUserEmail" class="col-sm-4">
-                    Email: 
-                </label>
-                <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" type="email" ID="txtNewUserEmail" runat="server"></asp:TextBox>
-                </div>
-            </div>
-
+            
             <div class="row">
                 <label id="lblNewUserFirstName" class="col-sm-4">
                     First Name: 
@@ -67,6 +60,15 @@
             </div>
 
             <div class="row">
+                <label id="lblNewUserEmail" class="col-sm-4">
+                    Email: 
+                </label>
+                <div class="col-sm-8">
+                    <asp:TextBox class="form-control my-1" type="email" ID="txtNewUserEmail" runat="server"></asp:TextBox>
+                </div>
+            </div>
+
+            <div class="row">
                 <label id="lblNewUserPic" class="col-sm-4" runat="server" >
                     Picture: 
                 </label>
@@ -77,7 +79,8 @@
             </div>
             <br />
             <asp:Button ID="btnUserAccountCreate" OnClick="BtnUserAccountCreate_Click" Text="Create Account" type="submit" class="btn btn-info btn-block" runat="server" />
-            <asp:Label ID="lblError" runat="server"></asp:Label>
+            <br />
+            <asp:Label ID="lblError" runat="server" class="col-sm-4"></asp:Label>
         </div>
     </div>
 </asp:Content>
