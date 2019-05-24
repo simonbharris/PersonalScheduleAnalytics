@@ -1,27 +1,34 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="CreateUserAccount.aspx.cs" Inherits="CreateUserAccount" %>
-
 <asp:Content ID="LoginPageHeader" ContentPlaceHolderID="PageHeader" runat="server">
     <p class="mx-auto text-monospace w-50">
         Sign up today!
     </p>
+    <script type="text/javascript">
+            // Add the following code if you want the name of the file appear on select
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+    </script>
 </asp:Content>
 <asp:Content ID="CreateUserAccountBody" ContentPlaceHolderID="CreateUserAcct" runat="server">
     <div class="container">
         <div class="form-group w-50 mx-auto">
             <div class="row">
                 <label id="lblNewUserName" class="col-sm-4">
-                    User Name: 
+                    User ID: 
                 </label>
                 <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" ID="txtNewUserID" runat="server"></asp:TextBox>
+                    <asp:TextBox class="form-control my-1" type="text" ID="txtNewUserID" runat="server"></asp:TextBox>
                 </div>
             </div>
+
             <div class="row">
                 <label id="lblNewPassword" class="col-sm-4">
                     Password: 
                 </label>
                 <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" ID="txtNewUserPassword" runat="server"></asp:TextBox>
+                    <asp:TextBox class="form-control my-1" type="text" ID="txtNewUserPassword" runat="server"></asp:TextBox>
                 </div>
             </div>
             <div class="row">
@@ -29,37 +36,51 @@
                     Verify Password: 
                 </label>
                 <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" ID="txtVerifyNewUserPassword" runat="server"></asp:TextBox>
+                    <asp:TextBox class="form-control my-1" type="text" ID="txtVerifyNewUserPassword" runat="server"></asp:TextBox>
                 </div>
 
             </div>
-            <div class="row">
-                <label id="lblNewUserEmail" class="col-sm-4">
-                    Email: 
-                </label>
-                <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" ID="txtNewUserEmail" runat="server"></asp:TextBox>
-                </div>
-            </div>
-
+            
             <div class="row">
                 <label id="lblNewUserFirstName" class="col-sm-4">
                     First Name: 
                 </label>
                 <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" ID="txtNewUserFirstName" runat="server"></asp:TextBox>
+                    <asp:TextBox class="form-control my-1" type="text" ID="txtNewUserFirstName" runat="server"></asp:TextBox>
                 </div>
             </div>
+
             <div class="row">
                 <label id="lblNewUserLastName" class="col-sm-4">
                     Last Name: 
                 </label>
                 <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" ID="txtNewUserLastName" runat="server"></asp:TextBox>
+                    <asp:TextBox class="form-control my-1" type="text" ID="txtNewUserLastName" runat="server"></asp:TextBox>
                 </div>
             </div>
 
+            <div class="row">
+                <label id="lblNewUserEmail" class="col-sm-4">
+                    Email: 
+                </label>
+                <div class="col-sm-8">
+                    <asp:TextBox class="form-control my-1" type="email" ID="txtNewUserEmail" runat="server"></asp:TextBox>
+                </div>
+            </div>
+
+            <div class="row">
+                <label id="lblNewUserPic" class="col-sm-4" runat="server" >
+                    Picture: 
+                </label>
+                <div class="custom-file, col-sm-8" id="customFile" lang="es">
+                    <asp:FileUpload type="file" ID="imgNewUserPic" runat="server" class="custom-file-input" aria-describedby="fileHelp"/>
+                    <label class="custom-file-label" for="imgNewUserPic" >Choose file...</label>
+                </div>
+            </div>
+            <br />
             <asp:Button ID="btnUserAccountCreate" OnClick="BtnUserAccountCreate_Click" Text="Create Account" type="submit" class="btn btn-info btn-block" runat="server" />
+            <br />
+            <asp:Label ID="lblError" runat="server" class="col-sm-4"></asp:Label>
         </div>
     </div>
 </asp:Content>
