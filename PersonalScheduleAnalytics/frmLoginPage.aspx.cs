@@ -4,15 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using MySql.Data.MySqlClient;
+
 
 public partial class frmLoginPage : System.Web.UI.Page
 {
-    string connectionString = @"Server=localhost;Database=CIS470_seniorproject;Uid=SeniorProject;Pwd=password";
+    clsDataLayer DataLayer;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        DataLayer = new clsDataLayer();
     }
 
     protected void LnkBtnUserLogin_Click(object sender, EventArgs e)
@@ -20,23 +20,23 @@ public partial class frmLoginPage : System.Web.UI.Page
         string username = txtUserID.Text;
         string password = txtUserPassword.Text;
 
-        if (username != "" && password != "")
+        //todo: check if txtUserID and txtUserPassword is blank/null
+
+
+        // validate the provided credentials 
+        bool isUserVerified = DataLayer.ValidateUser(username, password);
+
+        if (isUserVerified)
         {
-            try
-            {
-                MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connectionString);
-                conn.Open();
-
-
-            }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
-            {
-                Console.Write(ex);
-            }
+            // log user in if user is verified
+            DataLayer.UserLogin(username, password);
         }
-        string script = "alert(\"Hello!\");";
-        ScriptManager.RegisterStartupScript(this, GetType(),
-                              "ServerControlScript", script, true);
+        else
+        {
+            //todo: handle the case where the login credentials do not match what's in database
+        }
+        
+        
 
     }
 
