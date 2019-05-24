@@ -27,7 +27,7 @@ public partial class CreateUserAccount : System.Web.UI.Page
         connection.Open();
 
         MySqlCommand command = connection.CreateCommand();
-        command.CommandText = "SELECT COUNT(*) AS COUNT FROM cis470_seniorproject.users WHERE (UPPER(UserID) = UPPER('" + userID + "'))";
+        command.CommandText = "SELECT COUNT(*) AS COUNT FROM cis470_seniorproject.users WHERE LOWER(UserID) = LOWER('" + userID + "')";
         MySqlDataReader reader = command.ExecuteReader();
         while (reader.Read())
         {
@@ -133,6 +133,8 @@ public partial class CreateUserAccount : System.Web.UI.Page
             txtNewUserLastName.BackColor = System.Drawing.Color.White;
             lblError.Text = "";
             lblError.BackColor = System.Drawing.Color.White;
+
+            Session["sessionUserID"] = userID;
 
             try
             {
