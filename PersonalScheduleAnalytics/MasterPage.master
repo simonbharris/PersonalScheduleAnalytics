@@ -13,6 +13,8 @@
         <script src="Scripts/bootstrap.bundle.min.js"></script>
         <link href="Content/bootstrap-reboot.min.css" rel="stylesheet" />
         <link href="Content/AppStyleSheet.css" rel="stylesheet" />
+        <link href="Content/Style.css" rel="stylesheet" />
+
     </asp:ContentPlaceHolder>
 </head>
 <body>
