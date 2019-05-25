@@ -20,8 +20,20 @@ public partial class frmLoginPage : System.Web.UI.Page
         string username = txtUserID.Text;
         string password = txtUserPassword.Text;
 
-        //todo: check if txtUserID and txtUserPassword is blank/null
+        //check if txtUserID and txtUserPassword is blank/null
+        if(string.IsNullOrWhiteSpace(username) && string.IsNullOrWhiteSpace(password))
+        {
+            loginWarningLabel.Text = "Please Provide a User Name and Password";
+        }
 
+        else if(string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
+        {
+            loginWarningLabel.Text = "Please Provide a User Name";
+        }
+        else if(!string.IsNullOrWhiteSpace(username) && string.IsNullOrWhiteSpace(password))
+        {
+            loginWarningLabel.Text = "Please Provide a Password";
+        }
 
         // validate the provided credentials 
         bool isUserVerified = DataLayer.ValidateUser(username, password);
@@ -30,19 +42,17 @@ public partial class frmLoginPage : System.Web.UI.Page
         {
             // log user in if user is verified
             DataLayer.UserLogin(username, password);
+            Session["UserName"] = username;
+            Response.Redirect("~/frmDashboard.aspx");
         }
         else
         {
-            //todo: handle the case where the login credentials do not match what's in database
+            // handle the case where the login credentials do not match what's in database
+            loginWarningLabel.Text = "Incorrect Login Credentials, try again";
         }
         
         
 
-    }
-
-    protected void LnkBtnUserCreate_Click(object sender, EventArgs e)
-    {
-  
     }
 
 }

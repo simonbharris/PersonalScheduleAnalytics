@@ -24,7 +24,6 @@ public class clsDataLayer
         {
             try
             {
-                
                 conn.Open();
                 // todo: handle login
                 // once logged in use a response.redirect
@@ -62,6 +61,7 @@ public class clsDataLayer
             }
         }
         // return bool  value
+        conn.Close();
         return isUserVerified;
 
     }

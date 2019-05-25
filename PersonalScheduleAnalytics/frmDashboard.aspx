@@ -11,6 +11,7 @@
     <div class="container-fluid mt-5">
         <div class="row mx-auto">
             <div class="col-lg-6 pl-5 ">
+                <h1>Welcome <span  ID="usernameLabel" runat="server"></span></h1>
                 <p>
                     Dashboard Page
                 </p>
