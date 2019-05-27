@@ -134,7 +134,7 @@ public partial class CreateUserAccount : System.Web.UI.Page
             lblError.Text = "";
             lblError.BackColor = System.Drawing.Color.White;
 
-            Session["sessionUserID"] = userID;
+            Session["UserName"] = userID;
 
             try
             {

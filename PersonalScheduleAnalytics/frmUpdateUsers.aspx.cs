@@ -5,8 +5,8 @@ using MySql.Data.MySqlClient;
 public partial class frmUpdateUsers : System.Web.UI.Page
 {
     string connectionString = @"Server=localhost;Database=CIS470_seniorproject;Uid=SeniorProject;Pwd=password";
-    //string userID = Session["sessionUserID"].ToString();
-    string userID = "D00688698";
+    
+    string userID;
     string firstName = null;
     string lastName = null;
     string email = null;
@@ -14,6 +14,7 @@ public partial class frmUpdateUsers : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        userID = Session["UserName"].ToString();
         MySqlConnection connection = new MySqlConnection(connectionString);
         connection.Open();
         MySqlCommand command = connection.CreateCommand();

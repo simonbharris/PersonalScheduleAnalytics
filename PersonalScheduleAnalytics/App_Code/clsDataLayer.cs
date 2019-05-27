@@ -6,6 +6,7 @@ using MySql.Data.MySqlClient;
 
 /// <summary>
 /// Summary description for clsDataLayer
+/// Holds Connection strings to MYSQL
 /// </summary>
 public class clsDataLayer
 {
