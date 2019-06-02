@@ -36,8 +36,6 @@ public partial class frmUpdateUsers : System.Web.UI.Page
         string changeFirstName = txtUserFirstName.Text.Trim();
         string changeLastName = txtUserLastName.Text.Trim();
         string changeEmail = txtUserEmail.Text.Trim();
-        FileUpload changePic = (FileUpload)imgUserPic;
-
 
         //Start Password Change
         if (changePassword != "")
@@ -109,28 +107,34 @@ public partial class frmUpdateUsers : System.Web.UI.Page
             Response.Redirect("~/frmUpdateUsers.aspx?userID=" + userID);
         }
      //start UserPic Change
-        else if (changePassword == "" && verifyPassword == "" && changeFirstName == "" && changeLastName == "" && changeEmail == "")
+        else if (changePassword == "" && verifyPassword == "" && changeFirstName == "" && changeLastName == "" && changeEmail == "" && changeEmail == "")
         {
-            //try
-            //{
-            //    MySqlCommand cmd;
-            //    MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connectionString);
-            //    conn.Open();
-            //    string sqlStmt = "UPDATE cis470_seniorproject.users SET UserFirstName = IF('" + changeFirstName + "' ='' ,UserFirstName,'" + changeFirstName + "'),UserLastName = IF('" + changeLastName + "' ='' ,UserLastName,'" + changeLastName + "'),UserEmail = IF('" + changeEmail + "' ='' ,UserEmail,'" + changeEmail + "')WHERE LOWER(UserID) = LOWER('" + userID + "')AND UserEndDt IS NULL;";
-            //    cmd = new MySqlCommand(sqlStmt, conn);
-            //    cmd.ExecuteReader();
-            //    conn.Close();
-            //}
-            //catch (MySql.Data.MySqlClient.MySqlException ex)
-            //{
-            //    Console.Write(ex);
-            //}
-            //Response.Redirect("~/frmUpdateUsers.aspx?userID=" + userID);
             Response.Redirect("~/frmUpdateUsers.aspx?userID=" + userID);
         }
     }
 
-    protected void BtnCancel_Click(object sender, EventArgs e)
+    protected void BtnUserPicUpdate_Click(object sender, EventArgs e)
+    {
+        FileUpload changePic = (FileUpload)imgUserPic;
+
+        try
+        {
+            MySqlCommand cmd;
+            MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connectionString);
+            conn.Open();
+            string sqlStmt = "UPDATE cis470_seniorproject.users SET UserPic = '" + changePic + "' WHERE LOWER(UserID) = LOWER('" + userID + "')AND UserEndDt IS NULL;";
+            cmd = new MySqlCommand(sqlStmt, conn);
+            cmd.ExecuteReader();
+            conn.Close();
+        }
+        catch (MySql.Data.MySqlClient.MySqlException ex)
+        {
+            Console.Write(ex);
+        }
+        Response.Redirect("~/frmUpdateUsers.aspx?userID=" + userID);
+    }
+
+        protected void BtnCancel_Click(object sender, EventArgs e)
     {
         Response.Redirect("~/frmDashboard.aspx?userID=" + userID);
     }

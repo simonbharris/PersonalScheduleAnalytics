@@ -25,7 +25,7 @@
                     Change Password: 
                 </label>
                 <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" type="text" ID="txtUserChangePassword" runat="server"></asp:TextBox>
+                    <asp:TextBox class="form-control my-1" type="password" ID="txtUserChangePassword" runat="server"></asp:TextBox>
                 </div>
             </div>
 
@@ -34,7 +34,7 @@
                     Verify Password: 
                 </label>
                 <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" type="text" ID="txtUserVerifyPassword" runat="server"></asp:TextBox>
+                    <asp:TextBox class="form-control my-1" type="password" ID="txtUserVerifyPassword" runat="server"></asp:TextBox>
                 </div>
             </div>
 
@@ -70,16 +70,21 @@
                 <label id="lblUserPic" class="col-sm-4" runat="server" >
                     Picture: 
                 </label>
-                <div class="custom-file, col-sm-8" id="customFile" lang="es">
-                    <asp:FileUpload type="file" ID="imgUserPic" runat="server" class="custom-file-input" aria-describedby="fileHelp"/>
-                    <label class="custom-file-label" for="imgUserPic" >Choose file...</label>
+                <div class="input-group, col-sm-8" >
+                    <div class="input-group-prepend">
+                        <asp:Button class="btn btn-info input-group-text" id="btnUserPicUpdate" OnClick="BtnUserPicUpdate_Click" type="submit" runat="server" Text="Upload"/>
+                        <div class="custom-file"id="customFile">
+                            <asp:FileUpload type="file" ID="imgUserPic" runat="server" class="custom-file-input" aria-describedby="fileHelp"/>
+                            <label class="custom-file-label" for="imgUserPic">Choose file...</label>
+                        </div>
+                    </div>
+                    <asp:Button ID="btnUserUpdate" OnClick="BtnUserUpdate_Click" Text="Save" type="submit" class="btn btn-info btn-block col-sm-12" runat="server" />
+                    <asp:Button ID="BtnCancel" OnClick="BtnCancel_Click" Text="Cancel" type="submit" class="btn btn-danger btn-block col-sm-12" runat="server" />
+                    <asp:Label ID="lblError" runat="server" class="col-sm-4"></asp:Label>
                 </div>
-            </div>
-            <br />
-            <asp:Button ID="btnUserUpdate" OnClick="BtnUserUpdate_Click" Text="Save" type="submit" class="btn btn-info btn-block" runat="server" />
-            <asp:Button ID="BtnCancel" OnClick="BtnCancel_Click" Text="Cancel" type="submit" class="btn btn-danger btn-block" runat="server" />
-            <br />
-            <asp:Label ID="lblError" runat="server" class="col-sm-4"></asp:Label>
+            <div />
+
         </div>
+    </div>
     </div>
 </asp:Content>

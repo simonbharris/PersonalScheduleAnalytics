@@ -1,16 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="CreateUserAccount.aspx.cs" Inherits="CreateUserAccount" %>
-<asp:Content ID="LoginPageHeader" ContentPlaceHolderID="PageHeader" runat="server">
+<asp:Content ID="CreateUserAccountPageHeader" ContentPlaceHolderID="PageHeader" runat="server">
     <p class="mx-auto text-monospace w-50">
         Sign up today!
     </p>
-    <script type="text/javascript">
-            // Add the following code if you want the name of the file appear on select
-            $(".custom-file-input").on("change", function () {
-                var fileName = $(this).val().split("\\").pop();
-                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-            });
-    </script>
-</asp:Content>
+ </asp:Content>
 <asp:Content ID="CreateUserAccountBody" ContentPlaceHolderID="CreateUserAcct" runat="server">
     <div class="container">
         <div class="form-group w-50 mx-auto">
@@ -28,15 +21,15 @@
                     Password: 
                 </label>
                 <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" type="text" ID="txtNewUserPassword" runat="server"></asp:TextBox>
+                    <asp:TextBox class="form-control my-1" type="password" ID="txtNewUserPassword" runat="server"></asp:TextBox>
                 </div>
             </div>
             <div class="row">
                 <label id="lblVerifyNewPassword" class="col-sm-4">
-                    Verify Password: 
+                    Verify Password:
                 </label>
                 <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" type="text" ID="txtVerifyNewUserPassword" runat="server"></asp:TextBox>
+                    <asp:TextBox class="form-control my-1" type="password" ID="txtVerifyNewUserPassword" runat="server"></asp:TextBox>
                 </div>
 
             </div>
@@ -77,6 +70,7 @@
                     <label class="custom-file-label" for="imgNewUserPic" >Choose file...</label>
                 </div>
             </div>
+
             <br />
             <asp:Button ID="btnUserAccountCreate" OnClick="BtnUserAccountCreate_Click" Text="Create Account" type="submit" class="btn btn-info btn-block" runat="server" />
             <br />
@@ -84,3 +78,4 @@
         </div>
     </div>
 </asp:Content>
+
