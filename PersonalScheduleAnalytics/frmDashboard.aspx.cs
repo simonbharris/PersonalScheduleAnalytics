@@ -9,7 +9,8 @@ public partial class frmDashboard : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        string username = Session["UserName"].ToString();
+        usernameLabel.InnerText = username;
     }
 
     protected void LnkBtnUpdateUsers_Click(object sender, EventArgs e)

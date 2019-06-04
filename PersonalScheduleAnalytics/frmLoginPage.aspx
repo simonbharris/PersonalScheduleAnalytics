@@ -9,7 +9,7 @@
 </asp:Content>
 
 <asp:Content ID="LoginPageBody" ContentPlaceHolderID="LoginPageBody" runat="server">
-    <div class="container-fluid mt-5">
+    <div class="LoginPageBody container-fluid mt-5">
         <div class="row mx-auto">
             <div class="col-lg-6 pl-5 ">
                 <p>
@@ -30,13 +30,13 @@
                                 Password: 
                             </label>
                             <div class="col-sm-8">
-                                <asp:TextBox class="form-control my-1" ID="txtUserPassword" runat="server"></asp:TextBox>
+                                <asp:TextBox type="password" class="form-control my-1" ID="txtUserPassword" runat="server"></asp:TextBox>
                             </div>
 
                         </div>
 
-                        <asp:LinkButton ID="lnkBtnUserLogin" OnClick="LnkBtnUserLogin_Click" Text="User Login" type="submit" class="btn btn-info btn-block" runat="server" PostBackUrl="~/frmDashboard.aspx"> </asp:LinkButton>
-
+                        <asp:LinkButton ID="lnkBtnUserLogin" OnClick="LnkBtnUserLogin_Click" Text="User Login" type="submit" class="btn btn-info btn-block" runat="server"> </asp:LinkButton>
+                        <asp:Label runat="server" ID="loginWarningLabel"></asp:Label>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                 <p>New? Sign up here</p>
                 <div>
                     <div class=" w-50 form-group ">
-                        <asp:LinkButton ID="lnkBtnUserCreate" class="btn btn-success btn-block" runat="server" OnClick="LnkBtnUserCreate_Click" Text="Register" PostBackUrl="~/CreateUserAccount.aspx"> </asp:LinkButton>
+                        <asp:LinkButton ID="lnkBtnUserCreate" class="btn btn-success btn-block" runat="server" Text="Register" PostBackUrl="~/CreateUserAccount.aspx"> </asp:LinkButton>
                     </div>
                 </div>
             </div>

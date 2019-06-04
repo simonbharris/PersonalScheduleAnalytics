@@ -10,12 +10,13 @@
 <asp:Content ID="UpdateUsersPageBody" ContentPlaceHolderID="UpdateUsersPageBody" runat="server">
     <div class="container">
         <div class="form-group w-50 mx-auto">
+            
             <div class="row">
-                <label id="lblUserID" class="col-sm-4">
+                <label id="lblUserID" class="col-sm-4" for="txtUserID">
                     User ID: 
                 </label>
                 <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" type="text" ID="txtUserID" runat="server"></asp:TextBox>
+                    <asp:TextBox class="form-control my-1" type="text" ID="txtUserID" runat="server" readonly></asp:TextBox>
                 </div>
             </div>
 
@@ -27,6 +28,7 @@
                     <asp:TextBox class="form-control my-1" type="text" ID="txtUserChangePassword" runat="server"></asp:TextBox>
                 </div>
             </div>
+
             <div class="row">
                 <label id="lblUserVerifyPassword" class="col-sm-4">
                     Verify Password: 
@@ -34,16 +36,8 @@
                 <div class="col-sm-8">
                     <asp:TextBox class="form-control my-1" type="text" ID="txtUserVerifyPassword" runat="server"></asp:TextBox>
                 </div>
+            </div>
 
-            </div>
-            <div class="row">
-                <label id="lblUserEmail" class="col-sm-4">
-                    Email: 
-                </label>
-                <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" type="email" ID="txtUserEmail" runat="server"></asp:TextBox>
-                </div>
-            </div>
 
             <div class="row">
                 <label id="lblUserFirstName" class="col-sm-4">
@@ -60,6 +54,15 @@
                 </label>
                 <div class="col-sm-8">
                     <asp:TextBox class="form-control my-1" type="text" ID="txtUserLastName" runat="server"></asp:TextBox>
+                </div>
+            </div>
+
+            <div class="row">
+                <label id="lblUserEmail" class="col-sm-4">
+                    Email: 
+                </label>
+                <div class="col-sm-8">
+                    <asp:TextBox class="form-control my-1" type="email" ID="txtUserEmail" runat="server"></asp:TextBox>
                 </div>
             </div>
 

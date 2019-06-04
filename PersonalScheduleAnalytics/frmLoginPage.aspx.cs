@@ -4,15 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using MySql.Data.MySqlClient;
+
 
 public partial class frmLoginPage : System.Web.UI.Page
 {
-    string connectionString = @"Server=localhost;Database=CIS470_seniorproject;Uid=SeniorProject;Pwd=password";
+    clsDataLayer DataLayer;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        DataLayer = new clsDataLayer();
     }
 
     protected void LnkBtnUserLogin_Click(object sender, EventArgs e)
@@ -20,29 +20,39 @@ public partial class frmLoginPage : System.Web.UI.Page
         string username = txtUserID.Text;
         string password = txtUserPassword.Text;
 
-        if (username != "" && password != "")
+        //check if txtUserID and txtUserPassword is blank/null
+        if(string.IsNullOrWhiteSpace(username) && string.IsNullOrWhiteSpace(password))
         {
-            try
-            {
-                MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connectionString);
-                conn.Open();
-
-
-            }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
-            {
-                Console.Write(ex);
-            }
+            loginWarningLabel.Text = "Please Provide a User Name and Password";
         }
-        string script = "alert(\"Hello!\");";
-        ScriptManager.RegisterStartupScript(this, GetType(),
-                              "ServerControlScript", script, true);
 
-    }
+        else if(string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
+        {
+            loginWarningLabel.Text = "Please Provide a User Name";
+        }
+        else if(!string.IsNullOrWhiteSpace(username) && string.IsNullOrWhiteSpace(password))
+        {
+            loginWarningLabel.Text = "Please Provide a Password";
+        }
 
-    protected void LnkBtnUserCreate_Click(object sender, EventArgs e)
-    {
-  
+        // validate the provided credentials 
+        bool isUserVerified = DataLayer.ValidateUser(username, password);
+
+        if (isUserVerified)
+        {
+            // log user in if user is verified
+            DataLayer.UserLogin(username, password);
+            Session["UserName"] = username;
+            Response.Redirect("~/frmDashboard.aspx");
+        }
+        else
+        {
+            // handle the case where the login credentials do not match what's in database
+            loginWarningLabel.Text = "Incorrect Login Credentials, try again";
+        }
+        
+        
+
     }
 
 }
