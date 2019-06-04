@@ -12,13 +12,13 @@ public partial class frmLoginPage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
 
     protected void LnkBtnUserLogin_Click(object sender, EventArgs e)
     {
-        string username = txtUserID.Text;
-        string password = txtUserPassword.Text;
+        string username = txtUserID.Text.Trim();
+        string password = txtUserPassword.Text.Trim();
 
         if (username != "" && password != "")
         {
@@ -27,18 +27,16 @@ public partial class frmLoginPage : System.Web.UI.Page
                 MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connectionString);
                 conn.Open();
 
-
+                Session["sessionUserID"] = txtUserID.Text.Trim();
+                Response.Redirect("~/frmDashboard.aspx?userID=" + username);
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
                 Console.Write(ex);
             }
         }
-        string script = "alert(\"Hello!\");";
-        ScriptManager.RegisterStartupScript(this, GetType(),
-                              "ServerControlScript", script, true);
-
     }
+     
 
     protected void LnkBtnUserCreate_Click(object sender, EventArgs e)
     {

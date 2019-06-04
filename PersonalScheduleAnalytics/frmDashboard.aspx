@@ -17,6 +17,7 @@
                 <div class="container">
                     
                     <div class="col-lg-6 pl-5">
+                        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
                         <p>Current User Information Here!</p>
                           <div class=" w-50 form-group ">
                                 <asp:LinkButton ID="lnkBtnUpdateUsers" OnClick="LnkBtnUpdateUsers_Click" Text="Update Users" type="submit" class="btn btn-info btn-block" runat="server" PostBackUrl="~/frmUpdateUsers.aspx"> </asp:LinkButton>
@@ -39,7 +40,7 @@
 
                     <div class="col-lg-6 pl-5">
                             <div class=" w-50 form-group ">
-                                <asp:LinkButton ID="lnkBtnExitApp" class="btn btn-danger btn-block" runat="server" OnClick="LnkBtnExitApp_Click" Text="Exit" PostBackUrl="~/frmLoginPage.aspx"> </asp:LinkButton>
+                                <asp:LinkButton ID="lnkBtnExitApp" class="btn btn-danger btn-block" runat="server" OnClick="LnkBtnExitApp_Click" Text="Exit"> </asp:LinkButton>
                             </div>
                     </div>
 

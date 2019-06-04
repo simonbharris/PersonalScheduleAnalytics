@@ -35,7 +35,7 @@
 
                         </div>
 
-                        <asp:LinkButton ID="lnkBtnUserLogin" OnClick="LnkBtnUserLogin_Click" Text="User Login" type="submit" class="btn btn-info btn-block" runat="server" PostBackUrl="~/frmDashboard.aspx"> </asp:LinkButton>
+                        <asp:LinkButton ID="lnkBtnUserLogin" OnClick="LnkBtnUserLogin_Click" Text="User Login" type="submit" class="btn btn-info btn-block" runat="server" > </asp:LinkButton>
 
                     </div>
                 </div>
