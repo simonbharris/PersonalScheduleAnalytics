@@ -16,7 +16,7 @@
                     User ID: 
                 </label>
                 <div class="col-sm-8">
-                    <asp:TextBox class="form-control my-1" type="text" ID="txtUserID" runat="server" readonly></asp:TextBox>
+                    <asp:TextBox class="form-control my-1" type="text" ID="txtUserID" runat="server" readonly="true"></asp:TextBox>
                 </div>
             </div>
 

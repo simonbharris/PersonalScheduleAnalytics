@@ -13,14 +13,14 @@
             <h4 class="col-sm-12 border-top border-bottom">Team Member</h4>
         </div>
         <div class="col-sm-4">
-            <h4 class="col-sm-12 border-bottom border-right" >Miscellaneous</h4>
+            <h4 class="col-sm-12 border-bottom border-right">Miscellaneous</h4>
         </div>
     </div>
     <div class="row mx-auto text-monospace col-11">
         <div class="col-sm-8">
             <div class="row col-sm-12">
                 <asp:Label ID="lblUserName" runat="server" Text="Name" CssClass="col-sm-3 my-1"></asp:Label>
-                <asp:TextBox ID="txtUserName" runat="server" type="text" CssClass="col-sm-9 form-control my-1"></asp:TextBox>
+                <asp:TextBox ID="txtUserName" runat="server" type="text" CssClass="col-sm-9 form-control my-1" readonly="true"></asp:TextBox>
            </div>
            <div class=" row col-sm-12">
                 <asp:Label ID="lblProjectTeam" runat="server" Text="Project Team" CssClass="col-sm-3 my-1"></asp:Label>
@@ -28,7 +28,7 @@
             </div>
             <div class=" row col-sm-12">
                 <asp:Label ID="lblTeamLead" runat="server" Text="Team Lead" CssClass="col-sm-3 my-1"></asp:Label>
-                <asp:TextBox ID="txtTeamLead" runat="server" type="text" CssClass="col-sm-9 form-control my-1"></asp:TextBox>
+                <asp:DropDownList ID="ddlTeamLead" runat="server" AutoPostBack="true" CausesValidation="false" OnSelectedIndexChanged="ddlTeamLead_SelectedIndexChanged" type="text" CssClass="col-sm-9 form-control my-1"></asp:DropDownList>
             </div>
         </div>
         <div class="col-sm-4">
@@ -49,9 +49,9 @@
             <div class="row col-sm-12">
                 <p Class="col-sm-1"></p>
                 <asp:Label ID="lblFrom" runat="server" Text="From" CssClass="col-sm-2 my-1"></asp:Label>
-                <asp:TextBox ID="txtSheetStartDt" runat="server" type="date" CssClass="col-sm-4 form-control my-1"></asp:TextBox>
+                <asp:TextBox ID="txtSheetStartDt" runat="server" type="date" CssClass="col-sm-4 form-control my-1" AutoPostBack="true" CausesValidation="false" OnSelectedIndexChanged="txtSheetStartDt_SelectedIndexChanged"></asp:TextBox>
                 <asp:Label ID="lblTo" runat="server" Text="To" CssClass="col-sm-1 my-1"></asp:Label>
-                <asp:TextBox ID="txtSheetEndDt" runat="server" type="date" CssClass="col-sm-4 form-control my-1" ></asp:TextBox>
+                <asp:TextBox ID="txtSheetEndDt" runat="server" type="date" CssClass="col-sm-4 form-control my-1" AutoPostBack="true" CausesValidation="false" OnSelectedIndexChanged="txtSheetEndDt_SelectedIndexChanged"></asp:TextBox>
            </div>
         </div>
 
@@ -60,10 +60,11 @@
         </div>
     </div>
     <%--Work Description--%>
-    <asp:GridView ID="gridWorkDescription" runat="server">
-
-    </asp:GridView>
-
+    <div class="row mx-auto text-monospace col-10">
+        <asp:GridView ID="gridWorkDescription" runat="server" AllowPaging="true" PageSize="17" CssClass="table table-responsive table-hover">
+            <HeaderStyle CssClass="thead-dark"/>
+        </asp:GridView>
+    </div>
     <%--Notes and Remarks--%>
     <div class="row mx-auto text-monospace col-11">
         <div class="col-sm-12">
@@ -79,17 +80,17 @@
     <div class="row mx-auto text-monospace col-11">
         <div class="col-lg-4 pl-5">
             <div class="form-group ">
-                <asp:LinkButton ID="LinkButton1" class="btn btn-info btn-block" runat="server" OnClick="LnkBtnUpdate_Click" Text="Update" PostBackUrl="~/frmDashboard.aspx"> </asp:LinkButton>
+                <asp:LinkButton ID="BtnUpdate" class="btn btn-info btn-block hidden-print" runat="server" OnClick="LnkBtnUpdate_Click" Text="Save"> </asp:LinkButton>
             </div>
         </div>
         <div class="col-lg-4 pl-5">
             <div class="form-group ">
-                <asp:LinkButton ID="LinkButton2" class="btn btn-success btn-block" runat="server" OnClick="LnkBtnAdd_Click" Text="Add" PostBackUrl="~/frmDashboard.aspx"> </asp:LinkButton>
+                <asp:LinkButton ID="BtnPrint" class="btn btn-success btn-block hidden-print" runat="server" OnClientClick="javascript:window.print();" Text="Print"> </asp:LinkButton>
             </div>
         </div>
         <div class="col-lg-4 pl-5">
             <div class="form-group ">
-                <asp:LinkButton ID="LinkButton3" class="btn btn-danger btn-block" runat="server" OnClick="LnkBtnCancel_Click" Text="Cancel" PostBackUrl="~/frmDashboard.aspx"> </asp:LinkButton>
+                <asp:LinkButton ID="BtnCancel" class="btn btn-danger btn-block hidden-print" runat="server" OnClick="LnkBtnCancel_Click" Text="Cancel" PostBackUrl="~/frmDashboard.aspx"> </asp:LinkButton>
             </div>
         </div>
      </div>
