@@ -8,7 +8,7 @@
 </asp:Content>
 <asp:Content ID="UpdateTimeSheetsPageBody" ContentPlaceHolderID="UpdateTimeSheetsPageBody" runat="server">
     <%--Team Member--%>
-    <div class="row mx-auto text-monospace col-11">
+    <div class="row mx-auto text-monospace col-9">
         <div class="col-sm-8">
             <h4 class="col-sm-12 border-top border-bottom">Team Member</h4>
         </div>
@@ -16,7 +16,7 @@
             <h4 class="col-sm-12 border-bottom border-right">Miscellaneous</h4>
         </div>
     </div>
-    <div class="row mx-auto text-monospace col-11">
+    <div class="row mx-auto text-monospace col-9">
         <div class="col-sm-8">
             <div class="row col-sm-12">
                 <asp:Label ID="lblUserName" runat="server" Text="Name" CssClass="col-sm-3 my-1"></asp:Label>
@@ -36,7 +36,7 @@
         </div>
     </div>
     <%--Development Week--%>
-    <div class="row mx-auto text-monospace col-11">
+    <div class="row mx-auto text-monospace col-9">
         <div class="col-sm-8">
             <h4 class="col-sm-12 border-top border-bottom">Development Week</h4>
         </div>
@@ -44,7 +44,7 @@
             <h4 class="col-sm-12 border-bottom border-right" >Approved By</h4>
         </div>
     </div>
-     <div class="row mx-auto text-monospace col-11">
+     <div class="row mx-auto text-monospace col-9">
         <div class="col-sm-8">
             <div class="row col-sm-12">
                 <p Class="col-sm-1"></p>
@@ -60,24 +60,24 @@
         </div>
     </div>
     <%--Work Description--%>
-    <div class="row mx-auto text-monospace col-10">
+    <div class="row mx-auto text-monospace col-8">
         <asp:GridView ID="gridWorkDescription" runat="server" AllowPaging="true" PageSize="17" CssClass="table table-responsive table-hover">
             <HeaderStyle CssClass="thead-dark"/>
         </asp:GridView>
     </div>
     <%--Notes and Remarks--%>
-    <div class="row mx-auto text-monospace col-11">
+    <div class="row mx-auto text-monospace col-9">
         <div class="col-sm-12">
             <h4 class="col-sm-12 border-bottom border-right" >Notes and Remarks</h4>
         </div>
     </div>
-    <div class="row mx-auto text-monospace col-11">
+    <div class="row mx-auto text-monospace col-9">
         <div class="col-sm-12">
             <asp:TextBox ID="txtSheetNote" TextMode="MultiLine" type="text" rows="3" runat="server" CssClass="col-sm-12 form-control my-1"></asp:TextBox>
         </div>
     </div>
     <%--Buttons--%>
-    <div class="row mx-auto text-monospace col-11">
+    <div class="row mx-auto text-monospace col-9">
         <div class="col-lg-4 pl-5">
             <div class="form-group ">
                 <asp:LinkButton ID="BtnUpdate" class="btn btn-info btn-block hidden-print" runat="server" OnClick="LnkBtnUpdate_Click" Text="Save"> </asp:LinkButton>
