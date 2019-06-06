@@ -101,7 +101,7 @@ ipch/
 *.cachefile
 *.VC.db
 *.VC.VC.opendb
-
+Web.config
 # Visual Studio profiler
 *.psess
 *.vsp
