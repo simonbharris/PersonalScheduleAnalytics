@@ -15,7 +15,7 @@ public partial class frmDashboard : System.Web.UI.Page
 
     protected void LnkBtnUpdateUsers_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("frmEditCategories.aspx");
     }
 
     protected void LnkBtnUpdateCategories_Click(object sender, EventArgs e)

@@ -20,14 +20,14 @@
                     <div class="col-lg-6 pl-5">
                         <p>Current User Information Here!</p>
                           <div class=" w-50 form-group ">
-                                <asp:LinkButton ID="lnkBtnUpdateUsers" OnClick="LnkBtnUpdateUsers_Click" Text="Update Users" type="submit" class="btn btn-info btn-block" runat="server" PostBackUrl="~/frmUpdateUsers.aspx"> </asp:LinkButton>
+                                <asp:LinkButton ID="lnkBtnUpdateUsers" OnClick="LnkBtnUpdateUsers_Click" Text="Update Users" type="submit" class="btn btn-info btn-block" runat="server"></asp:LinkButton>
                           </div>
                     </div>
 
                     <div class="col-lg-6 pl-5">
                         <p>Current Category Information Here!</p>
                             <div class=" w-50 form-group ">
-                                <asp:LinkButton ID="lnkBtnUpdateCategories" OnClick="LnkBtnUpdateCategories_Click" Text="Add or Modify Categories" type="submit" class="btn btn-success btn-block" runat="server" PostBackUrl="~/frmUpdateCategories.aspx"> </asp:LinkButton>
+                                <asp:LinkButton ID="lnkBtnUpdateCategories" OnClick="LnkBtnUpdateCategories_Click" Text="Add or Modify Categories" type="submit" class="btn btn-success btn-block" runat="server" PostBackUrl="~/frmEditCategories.aspx"></asp:LinkButton>
                             </div>
                     </div>
 
