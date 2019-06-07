@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="frmUpdateCategories.aspx.cs" Inherits="frmUpdateCategories" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="frmUpdateCategory.aspx.cs" Inherits="frmUpdateCategories" %>
 
 <asp:Content ID="UpdateCategoriesPageHeader" ContentPlaceHolderID="PageHeader" runat="server">
     <p class="mx-auto text-monospace w-50">
@@ -12,26 +12,28 @@
         <div class="row mx-auto">
             <div class="col-lg-6 pl-5 ">
                 <p>
-                    Add or Update Categories Page
+                    Update a Category Item
                 </p>
                 <div class="container">
                     
                     <div class="col-lg-6 pl-5">
-                        <p>Category Lables and Text Boxes Here!</p>
+                        <p>Category Name<asp:TextBox ID="txbxCatName" runat="server"></asp:TextBox>
+                        </p>
+                        <p>Category Description<asp:TextBox ID="txbxCatDesc" runat="server" Height="135px" Width="325px"></asp:TextBox>
+                        </p>
                           <div class=" w-50 form-group ">
-                                <asp:LinkButton ID="lnkBtnUpdate" class="btn btn-info btn-block" runat="server" OnClick="LnkBtnUpdate_Click" Text="Update" PostBackUrl="~/frmDashboard.aspx"> </asp:LinkButton>
+                                <asp:LinkButton ID="lnkBtnUpdate" class="btn btn-info btn-block" runat="server" OnClick="LnkBtnUpdate_Click" Text="Submit"></asp:LinkButton>
                           </div>
                     </div>
 
                     <div class="col-lg-6 pl-5">
                             <div class=" w-50 form-group ">
-                                <asp:LinkButton ID="lnkBtnAdd" class="btn btn-success btn-block" runat="server" OnClick="LnkBtnAdd_Click" Text="Add" PostBackUrl="~/frmDashboard.aspx"> </asp:LinkButton>
+                                <asp:LinkButton ID="lnkBtnCancel" class="btn btn-danger btn-block" runat="server" OnClick="LnkBtnCancel_Click" Text="Cancel" PostBackUrl="~/frmEditCategories.aspx"></asp:LinkButton>
                             </div>
                     </div>
 
                     <div class="col-lg-6 pl-5">
                             <div class=" w-50 form-group ">
-                                <asp:LinkButton ID="lnkBtnCancel" class="btn btn-danger btn-block" runat="server" OnClick="LnkBtnCancel_Click" Text="Cancel" PostBackUrl="~/frmDashboard.aspx"> </asp:LinkButton>
                             </div>
                     </div>
 
