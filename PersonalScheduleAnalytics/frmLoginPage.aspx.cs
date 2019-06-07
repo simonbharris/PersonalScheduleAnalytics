@@ -42,7 +42,7 @@ public partial class frmLoginPage : System.Web.UI.Page
         {
             // log user in if user is verified
             DataLayer.UserLogin(username, password);
-            Session["UserName"] = username;
+            Session["sessionUserID"] = username;
             Response.Redirect("~/frmDashboard.aspx");
         }
         else
