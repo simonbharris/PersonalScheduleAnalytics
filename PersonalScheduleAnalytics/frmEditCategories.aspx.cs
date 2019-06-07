@@ -14,7 +14,7 @@ public partial class frmEditCategories : System.Web.UI.Page
         if (!IsPostBack)
         {
             cdl = new clsDataLayer();
-            lstCategoryNames.DataSource = cdl.GetCategoryTypes((string)Session["UserName"]);
+            lstCategoryNames.DataSource = cdl.GetCategoryTypes((string)Session["sessionUserID"]);
             lstCategoryNames.DataTextField = "CatName";
             lstCategoryNames.DataValueField = "CatID";
             lstCategoryNames.DataBind();

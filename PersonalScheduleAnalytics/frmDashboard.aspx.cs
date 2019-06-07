@@ -10,7 +10,7 @@ public partial class frmDashboard : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string username = Session["UserName"].ToString();
+        string username = Session["sessionUserID"].ToString();
         usernameLabel.InnerText = username;
         GetDayChartData();
     }

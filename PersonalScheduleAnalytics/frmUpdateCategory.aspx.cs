@@ -17,7 +17,7 @@ public partial class frmUpdateCategories : System.Web.UI.Page
             clsDataLayer cls = new clsDataLayer();
            Tuple<int, String, String> catInfo = cls.GetCategoryDetails(Int32.Parse(Session["UpdateCatID"].ToString()));
 
-            DataTable dt = cls.GetCategoryTypes(Session["UserName"].ToString());
+            DataTable dt = cls.GetCategoryTypes(Session["sessionUserID"].ToString());
             txbxCatName.Text = catInfo.Item2;
             txbxCatDesc.Text = catInfo.Item3;
         }

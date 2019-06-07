@@ -18,7 +18,7 @@ public partial class frmAddCategories : System.Web.UI.Page
     protected void LnkBtnAdd_Click(object sender, EventArgs e)
     {
         clsDataLayer cls = new clsDataLayer();
-        cls.AddCategory(Session["UserName"].ToString(), txbxCatName.Text, txbxCatDesc.Text);
+        cls.AddCategory(Session["sessionUserID"].ToString(), txbxCatName.Text, txbxCatDesc.Text);
         Response.Redirect("frmEditCategories.aspx");
 
     }
