@@ -13,10 +13,12 @@ using System.Data;
 public class clsDataLayer
 {
     // Database connection settings
-    const string SERVER =   "localhost";
+    const string SERVER = "localhost";
     const string DATABASE = "CIS470_seniorproject";
-    const string UID =      "SeniorProject";
-    const string PWD =      "password";
+    const string UID = "SeniorProject";
+    const string PWD = "password";
+
+    const string mysqlDateFormat = "yyyy-MM-dd HH:mm:ss";
 
     string connectionString;
     MySqlConnection conn;
@@ -27,6 +29,7 @@ public class clsDataLayer
         conn = new MySql.Data.MySqlClient.MySqlConnection(connectionString);
     }
 
+    #region User Utility
     public void UserLogin(string username, string password)
     {
         if (username != "" && password != "")
@@ -51,14 +54,14 @@ public class clsDataLayer
         bool isUserVerified = false;
         conn.Open();
 
-        string sqlStatement = "SELECT * FROM cis470_seniorproject.users WHERE UserID = '" + username +"' AND  UserPW = '" +password + "';";
+        string sqlStatement = "SELECT * FROM cis470_seniorproject.users WHERE UserID = '" + username + "' AND  UserPW = '" + password + "';";
 
         MySqlCommand cmd = new MySqlCommand(sqlStatement, conn);
         MySqlDataReader reader = cmd.ExecuteReader();
 
-        while(reader.Read())
+        while (reader.Read())
         {
-            if(reader.HasRows)
+            if (reader.HasRows)
             {
                 // if both credentials provided exist, set bool value to true
                 isUserVerified = true;
@@ -75,7 +78,9 @@ public class clsDataLayer
 
     }
 
+    #endregion
 
+    #region Categories
     //Input: Username
     //Output: Datatable structure containing PK and CatName values from the CategoryTypes table, where the (UserID == username)
     //Purpose: To populate a ListBox for the user with the categories they have to pick from.
@@ -134,7 +139,7 @@ public class clsDataLayer
             MySqlCommand cmd = new MySqlCommand(sqlStatement, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            tuple = new Tuple<int, String, String>(reader.GetInt32(0), reader.GetString(1), 
+            tuple = new Tuple<int, String, String>(reader.GetInt32(0), reader.GetString(1),
                 reader.IsDBNull(2) ? "" : reader.GetString(2));
         }
         catch (MySqlException ex)
@@ -151,7 +156,7 @@ public class clsDataLayer
 
     public void UpdateCategory(int id, string name, string desc, string show)
     {
-        string sqlStatement = 
+        string sqlStatement =
             $"UPDATE CategoryTypes " +
             $"SET CatName = '{name}', CatDesc = '{desc}', displayable = '{show}' " +
             $"WHERE CategoryID = {id};";
@@ -166,13 +171,41 @@ public class clsDataLayer
         BasicNonQuery(sqlStatement);
     }
 
-    public void BasicNonQuery(string query)
+    public void DeleteCategory(int id)
     {
+        string sqlStatement = $"DELETE FROM CategoryTypes " +
+            $"WHERE CategoryID = {id};";
+
+        BasicNonQuery(sqlStatement);
+    }
+    #endregion
+
+    #region TimeSheets
+
+    public int getSheetIdByDate(string userID, DateTime date)
+    {
+        int sheetID = -1;
+        // Gets the applicable sheet ID for the given start date.
+        string datestr = date.ToString("yyyy-MM-dd HH:mm:ss");
+        string sqlStatement = $"" +
+            $"SELECT SheetID FROM timesheets " +
+            $"WHERE UserID = '{userID}' " +
+            // Checks if the date parameter is within a date range of an existing time sheet.
+            $"AND STR_TO_DATE('{datestr}', '%Y-%m-%d %H:%i:%S') " + // Passed date
+            $"BETWEEN SheetStartDt AND SheetEndDt;";
+
         try
         {
+            MySqlCommand cmd = new MySqlCommand(sqlStatement, conn);
             conn.Open();
-            MySqlCommand cmd = new MySqlCommand(query, conn);
-            cmd.ExecuteNonQuery();
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            // If we found an existing sheet, save the ID
+            if (reader.HasRows)
+            {
+                reader.Read();
+                sheetID = reader.GetInt32(0);
+            }
         }
         catch (MySqlException ex)
         {
@@ -182,13 +215,66 @@ public class clsDataLayer
         {
             conn.Close();
         }
+        return sheetID;
     }
 
-    public void DeleteCategory(int id)
+    // Creates a new time sheet that can accept the input datetime
+    // Returns the ID of the new time sheet.
+    public int InsertNewTimeSheet(string userID, DateTime date)
     {
-        string sqlStatement = $"DELETE FROM CategoryTypes " +
-            $"WHERE CategoryID = {id};";
+        string sqlStatement = "INSERT INTO timesheets(UserID, SheetStartDt, SheetEndDt)" +
+            $"VALUES('{userID}', " +
+            $"DATE_ADD('{date.ToString("yyyy-MM-dd HH:mm:ss")}', INTERVAL - WEEKDAY('{date.ToString("yyyy-MM-dd HH:mm:ss")}') DAY), " +
+            $"DATE_ADD('{date.ToString("yyyy-MM-dd HH:mm:ss")}', INTERVAL 6 - weekday('{date.ToString("yyyy-MM-dd HH:mm:ss")}') DAY));";
 
         BasicNonQuery(sqlStatement);
+        return getSheetIdByDate(userID, date);
     }
+
+    public bool InsertCategoryInstance(string userID, int CategoryID, DateTime startDate, DateTime endDate)
+    {
+        // get applicable sheet ID
+        string sqlStatement;
+        int sheetID = getSheetIdByDate(userID, startDate);
+
+        if (sheetID == -1)
+            sheetID = InsertNewTimeSheet(userID, startDate);
+
+        if (sheetID != -1)
+        {
+            TimeSpan hourDiff = (endDate.Subtract(startDate));
+            sqlStatement = "INSERT INTO category_instance(SheetID, CatID, CatStartTm, CatEndTm, CatDuration) " +
+                $"VALUES ({sheetID}, {CategoryID}, " + // FKs
+                $"'{startDate.ToString("yyyy-MM-dd HH:mm:ss")}', " + // Start Date
+                $"'{endDate.ToString("yyyy-MM-dd HH:mm:ss")}', " + // End Date
+                $"{hourDiff.TotalHours});"; // Diff
+
+            if (BasicNonQuery(sqlStatement) > 0)
+                return true;
+        }
+        return false;
+    }
+
+    #endregion
+
+    public int BasicNonQuery(string query)
+    {
+        int rowsAffected = 0;
+        try
+        {
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            rowsAffected = cmd.ExecuteNonQuery();
+        }
+        catch (MySqlException ex)
+        {
+            System.Diagnostics.Debug.WriteLine(ex);
+        }
+        finally
+        {
+            conn.Close();
+        }
+        return (rowsAffected);
+    }
+
 }
