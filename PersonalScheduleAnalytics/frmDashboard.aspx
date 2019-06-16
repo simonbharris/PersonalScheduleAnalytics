@@ -26,16 +26,16 @@
                     <div class="card-body bg-light flex-fill">
                         <div class="form-group row">
                             <label class="col-4 my-1">Category</label>
-                            <asp:dropdownlist autopostback="false" causesvalidation="false" id="dropdownCategoryTypes" runat="server" class="form-control col-8 my-1"></asp:dropdownlist>
+                            <asp:DropDownList AutoPostBack="false" CausesValidation="false" ID="dropdownCategoryTypes" runat="server" class="form-control col-8 my-1"></asp:DropDownList>
                             <label class="col-4 my-1">Start Date:</label>
-                            <asp:textbox runat="server" id="catStartDate" type="date" class="form-control col-8 my-1" value="2019-06-01"></asp:textbox>
+                            <asp:TextBox runat="server" ID="catStartDate" type="date" class="form-control col-8 my-1" value="2019-06-01"></asp:TextBox>
                             <label class="col-4 my-1">Start Time</label>
-                            <asp:textbox runat="server" id="catStartTime" type="time" class="form-control col-8 my-1"></asp:textbox>
+                            <asp:TextBox runat="server" ID="catStartTime" type="time" class="form-control col-8 my-1"></asp:TextBox>
                             <label class="col-4 my-1">End Date:</label>
-                            <asp:textbox runat="server" id="catEndDate" type="date" class="form-control col-8 my-1" value="2019-06-01"></asp:textbox>
+                            <asp:TextBox runat="server" ID="catEndDate" type="date" class="form-control col-8 my-1" value="2019-06-01"></asp:TextBox>
                             <label class="col-4 my-1">End Time</label>
-                            <asp:textbox runat="server" type="time" id="catEndTime" class="form-control col-8 my-1"></asp:textbox>
-                            <asp:button runat="server" id="submitCategoryTimeButton" text="Submit" class="btn btn-info mx-auto mt-2 btn-block" onclick="submitNewCategoryTime" />
+                            <asp:TextBox runat="server" type="time" ID="catEndTime" class="form-control col-8 my-1"></asp:TextBox>
+                            <asp:Button runat="server" ID="submitCategoryTimeButton" Text="Submit" class="btn btn-info mx-auto mt-2 btn-block" OnClick="submitNewCategoryTime" />
                             <p id="catMessageText" runat="server" class="mx-auto mt-3 text-danger font-weight-bolder"></p>
                         </div>
                     </div>
@@ -49,17 +49,18 @@
                     </div>
                     <div class="card-body bg-light flex-fill">
                         <div class="list-group mt-1">
-                            <asp:linkbutton class="list-group-item list-group-item-action list-group-item-primary" onclick="LnkBtnUpdateUsers_Click" runat="server" id="lnkBtnUpdateUsers" postbackurl="~/frmUpdateUsers.aspx" data-toggle="tooltip" data-placement="right" title="Update Your User Information Here">Update User</asp:linkbutton>
+                            <asp:LinkButton class="list-group-item list-group-item-action list-group-item-primary" OnClick="LnkBtnUpdateUsers_Click" runat="server" ID="lnkBtnUpdateUsers" PostBackUrl="~/frmUpdateUsers.aspx" data-toggle="tooltip" data-placement="right" title="Update Your User Information Here">Update User</asp:LinkButton>
 
-                            <asp:linkbutton runat="server" id="lnkBtnUpdateCategories" onclick="LnkBtnUpdateCategories_Click" postbackurl="~/frmUpdateCategories.aspx" class="list-group-item list-group-item-action list-group-item-secondary" data-toggle="tooltip" data-placement="right" title="Update or Add Category Items">Add or Modify Categories</asp:linkbutton>
+                            <asp:LinkButton runat="server" ID="lnkBtnUpdateCategories" OnClick="LnkBtnUpdateCategories_Click" PostBackUrl="~/frmUpdateCategory.aspx" class="list-group-item list-group-item-action list-group-item-secondary" data-toggle="tooltip" data-placement="right" title="Update or Add Category Items">Add or Modify Categories</asp:LinkButton>
 
-                            <asp:linkbutton runat="server" id="lnkBtnUpdateTimeSheets" postbackurl="~/frmUpdateTimeSheets.aspx" class="list-group-item list-group-item-action list-group-item-primary" data-toggle="tooltip" data-placement="right" title="Update Your Time Card Data">Add or Update Time Cards</asp:linkbutton>
+                            <asp:LinkButton runat="server" ID="lnkBtnUpdateTimeSheets" PostBackUrl="~/frmUpdateTimeSheets.aspx" class="list-group-item list-group-item-action list-group-item-primary" data-toggle="tooltip" data-placement="right" title="Update Your Time Card Data">Add or Update Time Cards</asp:LinkButton>
 
-                            <asp:linkbutton runat="server" onclick="LnkBtnExitApp_Click" postbackurl="~/frmLoginPage.aspx" class="list-group-item list-group-item-action list-group-item-secondary" data-toggle="tooltip" data-placement="right" title="Securely Logout Here">Exit</asp:linkbutton>
+                            <asp:LinkButton runat="server" OnClick="LnkBtnExitApp_Click" PostBackUrl="~/frmLoginPage.aspx" class="list-group-item list-group-item-action list-group-item-secondary" data-toggle="tooltip" data-placement="right" title="Securely Logout Here">Exit</asp:LinkButton>
                             <div class="list-group-item list-group-item-action list-group-item-primary">
                                 <div class="form-group row">
                                     <label class="col-6">Chart Date</label>
-                                    <asp:textbox runat="server" id="Textbox1" type="date" class="form-control col-6" value="2019-06-01"></asp:textbox>
+                                    <asp:TextBox runat="server" id="chartDateTextBox" type="date" class="form-control col-6" />
+                                    <asp:Button runat="server" ID="chartDateButton" Text="Get Analytics" class="btn btn-info mx-auto mt-2 btn-block " OnClick="GetDayChartData" AutoPostBack="false" />
                                 </div>
                             </div>
                         </div>
@@ -74,8 +75,8 @@
                         Your Time Analytics
                     </div>
                     <div class="card-body justify-content-center bg-light flex-fill">
-                        <label>Stats for the day of Jun 9, 2019</label>
-                        <asp:chart id="Chart1" runat="server">
+                        <label id="statsLabel" runat="server">Stats for the </label>
+                        <asp:Chart ID="Chart1" runat="server">
                             <Series>
                                 <asp:Series Name="Series1">
                                     <Points>
@@ -84,16 +85,16 @@
                             </Series>
                             <ChartAreas>
                                 <asp:ChartArea Name="ChartArea1">
-                                    <AxisX Title="Task Name">
+                                    <AxisX>
                                     </AxisX>
-                                    <AxisY Title="Time Spent"></AxisY>
+                                    <AxisY></AxisY>
                                 </asp:ChartArea>
                             </ChartAreas>
-                        </asp:chart>
-                        <div class="btn-group ">
-                            <asp:button class="btn btn-secondary" runat="server" onclick="GetDayChartData" text="Day Chart" />
-                            <asp:button class="btn btn-secondary" runat="server" onclick="GetWeekChartData" text="Week Chart" />
-                            <asp:button class="btn btn-secondary" runat="server" text="Month Chart" onclick="GetMonthChartData" />
+                        </asp:Chart>
+                        <div class="btn-group " id="chartButtonGroup" runat="server">
+                            <asp:Button class="btn btn-secondary" runat="server" OnClick="GetDayChartData" Text="Day Chart" />
+                            <asp:Button class="btn btn-secondary" runat="server" OnClick="GetWeekChartData" Text="Week Chart" />
+                            <asp:Button class="btn btn-secondary" runat="server" Text="Month Chart" OnClick="GetMonthChartData" />
                         </div>
                     </div>
                 </div>
