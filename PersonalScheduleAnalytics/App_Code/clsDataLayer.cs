@@ -199,7 +199,11 @@ public class clsDataLayer
             MySqlCommand cmd = new MySqlCommand(sqlStatement, conn);
             conn.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> aaa8241696b8e2f3cf7dc6b136b62febde9fe208
             // If we found an existing sheet, save the ID
             if (reader.HasRows)
             {
@@ -229,6 +233,7 @@ public class clsDataLayer
 
         BasicNonQuery(sqlStatement);
         return getSheetIdByDate(userID, date);
+<<<<<<< HEAD
     }
 
     public bool InsertCategoryInstance(string userID, int CategoryID, DateTime startDate, DateTime endDate)
@@ -255,6 +260,34 @@ public class clsDataLayer
         return false;
     }
 
+=======
+    }
+
+    public bool InsertCategoryInstance(string userID, int CategoryID, DateTime startDate, DateTime endDate)
+    {
+        // get applicable sheet ID
+        string sqlStatement;
+        int sheetID = getSheetIdByDate(userID, startDate);
+
+        if (sheetID == -1)
+            sheetID = InsertNewTimeSheet(userID, startDate);
+
+        if (sheetID != -1)
+        {
+            TimeSpan hourDiff = (endDate.Subtract(startDate));
+            sqlStatement = "INSERT INTO category_instance(SheetID, CatID, CatStartTm, CatEndTm, CatDuration) " +
+                $"VALUES ({sheetID}, {CategoryID}, " + // FKs
+                $"'{startDate.ToString("yyyy-MM-dd HH:mm:ss")}', " + // Start Date
+                $"'{endDate.ToString("yyyy-MM-dd HH:mm:ss")}', " + // End Date
+                $"{hourDiff.TotalHours});"; // Diff
+
+            if (BasicNonQuery(sqlStatement) > 0)
+                return true;
+        }
+        return false;
+    }
+
+>>>>>>> aaa8241696b8e2f3cf7dc6b136b62febde9fe208
     #endregion
 
     public int BasicNonQuery(string query)
