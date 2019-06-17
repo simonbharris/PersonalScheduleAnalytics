@@ -49,13 +49,13 @@
                     </div>
                     <div class="card-body bg-light flex-fill">
                         <div class="list-group mt-1">
-                            <asp:LinkButton class="list-group-item list-group-item-action list-group-item-primary" OnClick="LnkBtnUpdateUsers_Click" runat="server" ID="lnkBtnUpdateUsers" PostBackUrl="~/frmUpdateUsers.aspx" data-toggle="tooltip" data-placement="right" title="Update Your User Information Here">Update User</asp:LinkButton>
+                            <asp:LinkButton class="list-group-item list-group-item-action list-group-item-primary" OnClick="LnkBtnUpdateUsers_Click" runat="server" ID="lnkBtnUpdateUsers"  data-toggle="tooltip" data-placement="right" title="Update Your User Information Here">Update User</asp:LinkButton>
 
-                            <asp:LinkButton runat="server" ID="lnkBtnUpdateCategories" OnClick="LnkBtnUpdateCategories_Click" PostBackUrl="~/frmUpdateCategory.aspx" class="list-group-item list-group-item-action list-group-item-secondary" data-toggle="tooltip" data-placement="right" title="Update or Add Category Items">Add or Modify Categories</asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="lnkBtnUpdateCategories" OnClick="LnkBtnUpdateCategories_Click" class="list-group-item list-group-item-action list-group-item-secondary" data-toggle="tooltip" data-placement="right" title="Update or Add Category Items">Add or Modify Categories</asp:LinkButton>
 
-                            <asp:LinkButton runat="server" ID="lnkBtnUpdateTimeSheets" PostBackUrl="~/frmUpdateTimeSheets.aspx" class="list-group-item list-group-item-action list-group-item-primary" data-toggle="tooltip" data-placement="right" title="Update Your Time Card Data">Add or Update Time Cards</asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="lnkBtnUpdateTimeSheets" OnClick="LnkBtnUpdateTimeSheets_Click"  class="list-group-item list-group-item-action list-group-item-primary" data-toggle="tooltip" data-placement="right" title="Update Your Time Card Data">Add or Update Time Cards</asp:LinkButton>
 
-                            <asp:LinkButton runat="server" OnClick="LnkBtnExitApp_Click" PostBackUrl="~/frmLoginPage.aspx" class="list-group-item list-group-item-action list-group-item-secondary" data-toggle="tooltip" data-placement="right" title="Securely Logout Here">Exit</asp:LinkButton>
+                            <asp:LinkButton runat="server" OnClick="LnkBtnExitApp_Click" class="list-group-item list-group-item-action list-group-item-secondary" data-toggle="tooltip" data-placement="right" title="Securely Logout Here">Exit</asp:LinkButton>
                             <div class="list-group-item list-group-item-action list-group-item-primary">
                                 <div class="form-group row">
                                     <label class="col-6">Chart Date</label>
