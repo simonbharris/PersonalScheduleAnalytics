@@ -429,7 +429,7 @@ public partial class frmDashboard : System.Web.UI.Page
 
     protected void LnkBtnUpdateCategories_Click(object sender, EventArgs e)
     {
-        Response.Redirect("frmEditCategory.aspx");
+        Response.Redirect("frmEditCategories.aspx");
     }
 
     protected void LnkBtnUpdateTimeSheets_Click(object sender, EventArgs e)
