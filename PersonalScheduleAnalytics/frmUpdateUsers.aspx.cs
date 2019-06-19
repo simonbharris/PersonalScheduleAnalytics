@@ -14,7 +14,7 @@ public partial class frmUpdateUsers : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        userID = Session["UserName"].ToString();
+        userID = Session["sessionUserID"].ToString();
         MySqlConnection connection = new MySqlConnection(connectionString);
         connection.Open();
         MySqlCommand command = connection.CreateCommand();
